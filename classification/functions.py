@@ -3,7 +3,7 @@ from __future__ import division
 from __future__ import print_function
 import numpy as np
 import torch
-
+       
 def save_state(blob, prefix='./snapshot'):
     # Output file name
     filename = '%s-%d.ckpt' % (prefix, blob.iteration)
@@ -87,6 +87,8 @@ def train_loop(blob,train_epoch=2.,store_iterations=500,store_prefix='snapshot')
     while int(epoch+0.5) < TRAIN_EPOCH:
         print('Epoch',int(epoch+0.5),'Starting @',time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
         # Create a progress bar for this epoch
+        import sys
+        sys.path.insert(0, '../')
         from utils import progress_bar
         progress = display(progress_bar(0,len(train_loader)),display_id=True)
         # Loop over data samples and into the network forward function
